@@ -1,0 +1,1 @@
+Bem-vindo(a) ao meu espaço de estudo de Java Spring Boot. Este projeto foi criado com a finalidade de testar, documentar e solidificar o conhecimento adquirido no desenvolvimento de aplicações e APIs utilizando o framework Spring Boot.
