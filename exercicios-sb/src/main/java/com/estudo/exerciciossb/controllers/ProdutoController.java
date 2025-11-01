@@ -1,25 +1,52 @@
 package com.estudo.exerciciossb.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.estudo.exerciciossb.model.entities.Produto;
 import com.estudo.exerciciossb.model.repositories.ProdutoRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
+@RequestMapping(path = ("/api/produtos"))
 public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
     
     @PostMapping
-    @RequestMapping(path = ("/api/produtos"))
-    public Produto novoProduto(@RequestParam String nome) {
-        Produto produto = new Produto(nome);
+    public Produto novoProduto(@Valid Produto produto) {
         produtoRepository.save(produto);
         return produto;
+    }
+
+    @GetMapping
+    public Iterable<Produto> obterProduto() {
+        return produtoRepository.findAll();
+    }
+
+    @GetMapping(path = ("/{id}"))
+    public Optional<Produto> obterProdutoPorId(@PathVariable int id) {
+        return produtoRepository.findById(id);
+    }
+
+    @PutMapping
+    public Produto alterarProduto(@Valid @RequestBody Produto produto) {
+        produtoRepository.save(produto);
+        return produto;
+    }
+
+    @DeleteMapping(path = ("/{id}"))
+    public void excluirProduto(@PathVariable int id) {
+        produtoRepository.deleteById(id);
     }
 }
