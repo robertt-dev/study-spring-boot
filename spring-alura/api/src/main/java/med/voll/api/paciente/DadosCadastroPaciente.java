@@ -25,4 +25,12 @@ public record DadosCadastroPaciente(
   @NotNull
   @Valid
   DadosEndereco endereco) {
+
+    public DadosCadastroPaciente(Paciente paciente) {
+      this(paciente.getNome(),
+          paciente.getEmail(),
+          paciente.getTelefone(),
+          paciente.getCpf(),
+          paciente.getEndereco());
+    }
 }

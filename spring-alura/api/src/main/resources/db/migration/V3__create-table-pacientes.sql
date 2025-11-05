@@ -4,7 +4,7 @@ CREATE TABLE pacientes (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     telefone varchar(20) not null,
-    especialidade VARCHAR(50) NOT NULL,
+    cpf VARCHAR(50) NOT NULL,
 
     logradouro VARCHAR(100) NOT NULL,
     bairro VARCHAR(100) NOT NULL,
