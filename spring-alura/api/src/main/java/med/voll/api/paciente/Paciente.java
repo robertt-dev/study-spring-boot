@@ -32,11 +32,18 @@ public class Paciente {
     @Embedded
     private DadosEndereco endereco;  
 
+    private boolean ativo;
+
     public Paciente(DadosCadastroPaciente dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = dados.endereco();
+    }
+
+    public void excluirPaciente() {
+       this.ativo = false;
     }
 }
